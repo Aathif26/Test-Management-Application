@@ -1,28 +1,39 @@
-import { InputField } from "../common/InputField";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInputField } from "../common/FormInputField";
+import { loginSchema, type LoginFormData } from "../../features/auth/schemas/login.schema";
 
 export default function LoginForm() {
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            userId: "",
+            password: ""
+        }
+    })
+
+    const onSubmit = (data: LoginFormData) => {
+        console.log(data)
+    }
+
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
-                <InputField
-                    name="username"
+                <FormInputField
+                    registration={register("userId")}
                     label="User ID"
                     type="text"
                     placeholder="Enter User ID"
-                    value=""
-                    onChange={() => { }}
-                    error=""
+                    error={errors.userId?.message}
                     className="rounded-sm"
                 />
 
-                <InputField
-                    name="password"
+                <FormInputField
+                    registration={register("password")}
                     label="Password"
                     type="password"
                     placeholder="Enter Password"
-                    value=""
-                    onChange={() => { }}
-                    error=""
+                    error={errors.password?.message}
                     className="rounded-sm"
                 />
 
@@ -35,12 +46,12 @@ export default function LoginForm() {
 
                 {/* Login Button */}
                 <button
-                    type="button"
-                    className="w-full bg-[#4F7EF7] hover:bg-[#3A68DE] text-white font-medium text-[15px] py-2.5 rounded-lg mt-4 transition-colors duration-200"
+                    type="submit"
+                    className="w-full bg-[#4F7EF7] hover:bg-[#3A68DE] text-white font-medium text-[15px] py-2.5 rounded-lg mt-4 transition-colors duration-200 hover:cursor-pointer"
                 >
                     Login
                 </button>
             </div>
-        </>
+        </form>
     )
 }

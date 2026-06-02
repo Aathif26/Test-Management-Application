@@ -4,41 +4,37 @@ import {
   FieldError
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import type { UseFormRegisterReturn } from "react-hook-form";
 
-export function InputField({
-    name,
+export function FormInputField({
     label,
     type,
     placeholder,
-    value,
-    onChange,
     error,
     className,
+    registration,
 }: {
-    name: string;
     label: string;
     type: string;
     placeholder: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    error: string;
+    error?: string;
     className?: string;
+    registration: UseFormRegisterReturn;
 }) {
   return (
     <Field>
-      <FieldLabel htmlFor={name}>{label}</FieldLabel>
+      <FieldLabel htmlFor={registration.name}>{label}</FieldLabel>
       <Input
-        id={name}
+        id={registration.name}
         type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        {...registration}
         aria-invalid={!!error}
-        aria-errormessage={!!error ? `${name}-error` : undefined}
+        aria-errormessage={!!error ? `${registration.name}-error` : undefined}
         className={className}
       />
       {error && (
-        <FieldError id={`${name}-error`}>{error}</FieldError>
+        <FieldError id={`${registration.name}-error`}>{error}</FieldError>
       )}
     </Field>
   )
