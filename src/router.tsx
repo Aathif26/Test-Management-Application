@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router"
 
-import GuestRoute from "@/components/auth/GuestRoute"
-import ProtectedRoute from "@/components/auth/ProtectedRoute"
+import GuestRoute from "@/features/auth/components/GuestRoute"
+import ProtectedRoute from "@/features/auth/components/ProtectedRoute"
 
 import LoginPage from "@/pages/LoginPage"
 import DashboardPage from "@/pages/DashboardPage"

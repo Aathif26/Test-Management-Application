@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
-import { authService } from "@/services/auth.service";
+import { authService } from "@/features/auth/services/auth.service";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import type { LoginFormData } from "@/features/auth/schemas/login.schema";
 import type { ApiError } from "@/features/auth/types/auth.types";

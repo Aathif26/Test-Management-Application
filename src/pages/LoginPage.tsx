@@ -1,4 +1,4 @@
-import LoginForm from "@/components/form/LoginForm";
+import LoginForm from "@/features/auth/components/LoginForm";
 
 export default function LoginPage() {
   return (
@@ -9,7 +9,7 @@ export default function LoginPage() {
           {/* Left Column - Banner Image (Hidden on Mobile) */}
           <div className="hidden lg:block lg:w-7/12">
             <img
-              src="/LoginPage/login-banner.png"
+              src="/images/login/login-banner.png"
               alt="Login Banner"
               className="w-full h-full object-cover"
             />
@@ -24,7 +24,7 @@ export default function LoginPage() {
                   {/* Logo */}
                   <div className="w-40 mb-2">
                     <img
-                      src="/LoginPage/preproute-logo.png"
+                      src="/images/login/preproute-logo.png"
                       alt="PrepRoute Logo"
                       className="w-full h-full object-contain"
                     />

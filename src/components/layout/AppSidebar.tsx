@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router"
 import {
   LuLayoutDashboard,
   LuClipboardList,
+  LuFilePen,
 } from "react-icons/lu"
 
 import {
@@ -24,7 +25,7 @@ const navItems = [
   {
     title: "Test Creation",
     url: "/tests/new",
-    icon: "LuFileEdi",
+    icon: LuFilePen,
   },
   {
     title: "Test Tracking",
@@ -42,7 +43,7 @@ export function AppSidebar() {
         <Link to="/" className="flex items-center gap-2 font-bold text-xl text-blue-600">
           <div className="w-40 mb-2">
             <img
-              src="/LoginPage/preproute-logo.png"
+              src="/images/login/preproute-logo.png"
               alt="PrepRoute Logo"
               className="w-full h-full object-contain"
             />
