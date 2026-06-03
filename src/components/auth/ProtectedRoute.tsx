@@ -1,5 +1,6 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate } from "react-router";
 import { useAuth } from "@/features/auth/context/AuthContext";
+import AppLayout from "@/components/layout/AppLayout";
 
 /**
  * Layout route that guards its children behind authentication.
@@ -12,5 +13,5 @@ export default function ProtectedRoute() {
     return <Navigate to="/login" replace />;
   }
 
-  return <Outlet />;
+  return <AppLayout />;
 }
