@@ -7,12 +7,15 @@ export function DashboardHeader() {
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Test Analytics</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage, monitor, and organize your tests</p>
+      <div className="space-y-1">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Test Analytics</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400">Manage, monitor, and organize your tests</p>
       </div>
-      <Button onClick={() => navigate('/tests/new')} className="flex items-center gap-2 shadow-sm transition-transform hover:scale-105 active:scale-95 bg-[#5988EF] text-white px-4 py-2 rounded-lg hover:bg-[#384EC7] hover:cursor-pointer">
-        <FiPlus className="w-4 h-4" />
+      <Button 
+        onClick={() => navigate('/tests/new')} 
+        className="flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 hover:cursor-pointer group font-medium"
+      >
+        <FiPlus className="w-4 h-4 transition-transform group-hover:rotate-90 duration-300" />
         Create New Test
       </Button>
     </div>

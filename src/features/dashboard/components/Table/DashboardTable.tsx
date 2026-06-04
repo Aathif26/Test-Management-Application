@@ -1,6 +1,6 @@
 import { DataTable } from './data-table';
 import { columns } from './columns';
-import type { TestItem } from '../../data/mockData';
+import type { TestItem } from '@/types';
 
 interface DashboardTableProps {
   tests: TestItem[];

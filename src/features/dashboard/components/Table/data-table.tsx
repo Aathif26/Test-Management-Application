@@ -29,7 +29,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FiFileText, FiPlus } from "react-icons/fi";
 import { useNavigate } from "react-router";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
     Select,
     SelectContent,
@@ -49,6 +49,12 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
     const navigate = useNavigate();
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+    // Derive unique subjects from the data
+    const uniqueSubjects = useMemo(() => {
+        const subjects = new Set(data.map((row: any) => row.subject).filter(Boolean));
+        return Array.from(subjects).sort() as string[];
+    }, [data])
 
     const table = useReactTable({
         data,
@@ -93,19 +99,14 @@ export function DataTable<TData, TValue>({
                         value={(table.getColumn("subject")?.getFilterValue() as string) ?? "all"}
                         onValueChange={(value) => table.getColumn("subject")?.setFilterValue(value === "all" ? "" : value)}
                     >
-                        <SelectTrigger className="w-full sm:w-37.5">
+                        <SelectTrigger className="w-full sm:w-1/2">
                             <SelectValue placeholder="All Subjects" />
                         </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Subjects</SelectItem>
-                            <SelectItem value="Math">Math</SelectItem>
-                            <SelectItem value="Physics">Physics</SelectItem>
-                            <SelectItem value="Chemistry">Chemistry</SelectItem>
-                            <SelectItem value="Biology">Biology</SelectItem>
-                            <SelectItem value="History">History</SelectItem>
-                            <SelectItem value="English">English</SelectItem>
-                            <SelectItem value="Computer Science">Computer Science</SelectItem>
-                            <SelectItem value="Geography">Geography</SelectItem>
+                        <SelectContent className="bg-white">
+                            <SelectItem value="all">All Subject</SelectItem>
+                            {uniqueSubjects.map((subject) => (
+                                <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                     
@@ -113,27 +114,27 @@ export function DataTable<TData, TValue>({
                         value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
                         onValueChange={(value) => table.getColumn("status")?.setFilterValue(value === "all" ? "" : value)}
                     >
-                        <SelectTrigger className="w-full sm:w-37.5">
-                            <SelectValue placeholder="All Statuses" />
+                        <SelectTrigger className="w-full sm:w-1/2">
+                            <SelectValue placeholder="All Status" />
                         </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Statuses</SelectItem>
-                            <SelectItem value="Active">Active</SelectItem>
-                            <SelectItem value="Draft">Draft</SelectItem>
-                            <SelectItem value="Unpublished">Unpublished</SelectItem>
+                        <SelectContent className="bg-white">
+                            <SelectItem value="all">All Status</SelectItem>
+                            <SelectItem value="live">Live</SelectItem>
+                            <SelectItem value="draft">Draft</SelectItem>
+                            <SelectItem value="unpublished">Unpublished</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
             </div>
 
             {/* Table */}
-            <div className="flex-1 min-h-0 overflow-auto rounded-md border">
+            <div className="flex-1 min-h-0 overflow-auto rounded-xl border border-slate-200/60 bg-white/50 backdrop-blur-sm shadow-sm">
                 <Table>
-                    <TableHeader className="bg-gray-50 sticky top-0 z-10">
+                    <TableHeader className="bg-slate-50/80 backdrop-blur-md sticky top-0 z-10 border-b border-slate-200/60">
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id} className="hover:bg-gray-50">
+                            <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-slate-200/60">
                                 {headerGroup.headers.map((header) => (
-                                    <TableHead key={header.id} className="font-semibold text-gray-600">
+                                    <TableHead key={header.id} className="font-semibold text-slate-500 uppercase tracking-wider text-xs h-11">
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
@@ -151,7 +152,7 @@ export function DataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="hover:bg-blue-50/50 transition-colors group"
+                                    className="hover:bg-blue-50/40 transition-colors duration-200 group border-b-slate-100"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
@@ -199,6 +200,7 @@ export function DataTable<TData, TValue>({
                         size="sm"
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
+                        className="hover:cursor-pointer"
                     >
                         <FaChevronLeft />
                     </Button>
@@ -207,6 +209,7 @@ export function DataTable<TData, TValue>({
                         size="sm"
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
+                        className="hover:cursor-pointer"
                     >
                         <FaChevronRight />
                     </Button>

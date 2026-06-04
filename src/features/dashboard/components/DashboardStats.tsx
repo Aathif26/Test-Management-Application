@@ -1,33 +1,39 @@
-import { FiFileText, FiCheckCircle, FiEdit3, FiEyeOff } from 'react-icons/fi';
-import { stats } from '../data/mockData';
+import { FiFileText, FiCheckCircle, FiEdit3, FiEyeOff, FiUserX } from 'react-icons/fi';
 import { StatCard } from './StatCard';
+import type { DashboardStatsProps } from '@/types';
 
-export function DashboardStats() {
+export function DashboardStats({ total, live, draft, unpublished, unassigned }: DashboardStatsProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 shrink-0">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 shrink-0">
       <StatCard
         title="Total Tests"
-        value={stats.total}
+        value={total}
         icon={<FiFileText className="w-4 h-4 text-blue-600" />}
-        iconBgColorClass="bg-blue-50"
+        iconBgColorClass="bg-blue-50 group-hover:bg-blue-100"
       />
       <StatCard
-        title="Active Tests"
-        value={stats.active}
-        icon={<FiCheckCircle className="w-4 h-4 text-green-600" />}
-        iconBgColorClass="bg-green-50"
+        title="Live Tests"
+        value={live}
+        icon={<FiCheckCircle className="w-4 h-4 text-emerald-600" />}
+        iconBgColorClass="bg-emerald-50 group-hover:bg-emerald-100"
       />
       <StatCard
         title="Draft Tests"
-        value={stats.draft}
-        icon={<FiEdit3 className="w-4 h-4 text-yellow-600" />}
-        iconBgColorClass="bg-yellow-50"
+        value={draft}
+        icon={<FiEdit3 className="w-4 h-4 text-amber-600" />}
+        iconBgColorClass="bg-amber-50 group-hover:bg-amber-100"
       />
       <StatCard
-        title="Unpublished Tests"
-        value={stats.unpublished}
-        icon={<FiEyeOff className="w-4 h-4 text-gray-600" />}
-        iconBgColorClass="bg-gray-100"
+        title="Unpublished"
+        value={unpublished}
+        icon={<FiEyeOff className="w-4 h-4 text-slate-600" />}
+        iconBgColorClass="bg-slate-100 group-hover:bg-slate-200"
+      />
+      <StatCard
+        title="Unassigned"
+        value={unassigned}
+        icon={<FiUserX className="w-4 h-4 text-indigo-600" />}
+        iconBgColorClass="bg-indigo-50 group-hover:bg-indigo-100"
       />
     </div>
   );
