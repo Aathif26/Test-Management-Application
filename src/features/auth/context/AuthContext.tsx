@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useMemo } from "react";
 import type { ReactNode } from "react";
-import type { User } from "@/features/auth/types/auth.types";
+import type { User } from "@/types";
 
 interface AuthState {
   token: string | null;

@@ -1,8 +1,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginFormData } from "@/features/auth/schemas/login.schema";
+import z from "zod/v3";
 import { useLogin } from "@/features/auth/hooks/useLogin";
 import { FormInputField } from "@/components/form/FormInputField";
+
+const loginSchema = z.object({
+    userId: z.string().min(1, "Please enter a valid user ID"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
     const { mutate: login, isPending, error } = useLogin();
@@ -58,7 +65,7 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full bg-[#4F7EF7] hover:bg-[#3A68DE] text-white font-medium text-[15px] py-2.5 rounded-lg mt-4 transition-colors duration-200 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full bg-[#5988EF] hover:bg-[#384EC7] text-white font-medium text-[15px] py-2.5 rounded-lg mt-4 transition-colors duration-200 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                     {isPending ? "Logging in..." : "Login"}
                 </button>

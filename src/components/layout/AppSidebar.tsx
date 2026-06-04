@@ -1,9 +1,6 @@
 import { Link, useLocation } from "react-router"
-import {
-  LuLayoutDashboard,
-  LuClipboardList,
-  LuFilePen,
-} from "react-icons/lu"
+import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { TbClipboardSearch } from "react-icons/tb";
 
 import {
   Sidebar,
@@ -15,22 +12,23 @@ import {
   SidebarMenuItem,
   SidebarHeader,
 } from "@/components/ui/sidebar"
+import { FaArrowTrendUp } from "react-icons/fa6"
 
 const navItems = [
   {
     title: "Dashboard",
     url: "/",
-    icon: LuLayoutDashboard,
+    icon: FaArrowTrendUp,
   },
   {
     title: "Test Creation",
     url: "/tests/new",
-    icon: LuFilePen,
+    icon: HiOutlinePencilSquare,
   },
   {
     title: "Test Tracking",
     url: "/tracking",
-    icon: LuClipboardList,
+    icon: TbClipboardSearch,
   },
 ]
 
@@ -40,7 +38,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r bg-white" variant="sidebar">
       <SidebarHeader className="p-6">
-        <Link to="/" className="flex items-center gap-2 font-bold text-xl text-blue-600">
+        <Link to="/">
           <div className="w-40 mb-2">
             <img
               src="/images/login/preproute-logo.png"
@@ -59,10 +57,10 @@ export function AppSidebar() {
 
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={isActive} size="lg" className={isActive ? "bg-blue-50 text-blue-600 hover:bg-blue-50 hover:text-blue-600" : "text-gray-600"}>
+                    <SidebarMenuButton asChild isActive={isActive} size="lg" className={isActive ? "bg-[#F8FAFF] text-[#384EC7] hover:bg-[#625BF60D] hover:text-[#384EC7] border-l-4 border-[#384EC7]" : "text-[#6B7180]"}>
                       <Link to={item.url}>
-                        <item.icon className="h-5 w-5" />
-                        <span className="font-medium">{item.title}</span>
+                        <item.icon className="h-7 w-7" />
+                        <span className="font-normal text-lg">{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
