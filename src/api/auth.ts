@@ -1,6 +1,6 @@
 import apiClient from "@/lib/axios";
-import type { LoginFormData } from "@/features/auth/schemas/login.schema";
-import type { LoginResponse } from "@/features/auth/types/auth.types";
+import type { LoginResponse } from "@/types";
+import type { LoginFormData } from "@/features/auth/components/LoginForm";
 
 export const authService = {
   login: async (credentials: LoginFormData): Promise<LoginResponse> => {
