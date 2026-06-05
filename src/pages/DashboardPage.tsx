@@ -11,7 +11,7 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 bg-slate-50/50 dark:bg-slate-900/30">
+      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto w-full flex flex-col h-full gap-6">
           <DashboardHeader />
           {/* Stats skeleton */}
@@ -51,7 +51,7 @@ export default function DashboardPage() {
 
   if (isError) {
     return (
-      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 bg-slate-50/50 dark:bg-slate-900/30">
+      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 bg-white">
         <div className="max-w-7xl mx-auto w-full flex flex-col h-full gap-6">
           <DashboardHeader />
           <div className="flex-1 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-xl border border-slate-200/60 shadow-sm">
@@ -75,7 +75,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 animate-in fade-in slide-in-from-bottom-4 duration-500 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 selection:bg-blue-100 selection:text-blue-900">
+    <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 animate-in fade-in slide-in-from-bottom-4 duration-500 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto w-full flex flex-col h-full gap-6">
         <DashboardHeader />
 

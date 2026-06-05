@@ -13,6 +13,7 @@ export function FormInputField({
     error,
     className,
     registration,
+    FieldClassName,
 }: {
     label: string;
     type: string;
@@ -20,10 +21,11 @@ export function FormInputField({
     error?: string;
     className?: string;
     registration: UseFormRegisterReturn;
+    FieldClassName?: string
 }) {
   return (
     <Field>
-      <FieldLabel htmlFor={registration.name}>{label}</FieldLabel>
+      <FieldLabel htmlFor={registration.name} className={FieldClassName}>{label}</FieldLabel>
       <Input
         id={registration.name}
         type={type}
