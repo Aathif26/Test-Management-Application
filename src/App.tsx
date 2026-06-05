@@ -1,8 +1,23 @@
 import { RouterProvider } from "react-router"
+import { Toaster } from "sonner"
 import { router } from "./router"
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster
+        position="top-right"
+        richColors
+        closeButton
+        toastOptions={{
+          style: {
+            fontFamily: "'Inter Variable', sans-serif",
+          },
+        }}
+      />
+    </>
+  )
 }
 
 export default App

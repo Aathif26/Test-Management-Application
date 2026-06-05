@@ -1,28 +1,26 @@
-import { useParams, useNavigate } from "react-router"
-import { useForm } from "react-hook-form"
+import { useTestForm } from "@/features/test-creation/hooks/useTestForm"
 import { TestCreationBreadcrumb } from "@/features/test-creation/components/TestCreationBreadcrumb"
 import { TestTypeTabs } from "@/features/test-creation/components/TestTypeTabs"
 import { TestDetailsForm } from "@/features/test-creation/components/TestDetailsForm"
 import { FormActions } from "@/features/test-creation/components/FormActions"
-import { DEFAULT_FORM_DATA, type TestFormData, type TestType } from "@/features/test-creation/types"
+import { PageLoadingState } from "@/features/test-creation/components/PageLoadingState"
+import { PageErrorState } from "@/features/test-creation/components/PageErrorState"
+import { useNavigate } from "react-router"
+import type { TestType } from "@/types"
 
 export default function CreateEditPage() {
-  const { id } = useParams<{ id: string }>()
-  const isEditing = Boolean(id)
   const navigate = useNavigate()
+  const {
+    isEditing, isSubmitting, isPageLoading, testError,
+    control, register, errors, handleSubmit, onSubmit,
+    watchedType, watchedSubject, watchedTopics, setValue,
+    subjectOptions, topicOptions, subTopicOptions,
+    subjectsLoading, topicsLoading, subTopicsLoading,
+    handleSubjectChange, handleTopicChange,
+  } = useTestForm()
 
-  const { control, register, handleSubmit, watch, setValue, formState: { errors } } = useForm<TestFormData>({
-    defaultValues: DEFAULT_FORM_DATA,
-  })
-
-  const testType = watch("testType")
-
-  const handleCancel = () => navigate("/")
-
-  const onSubmit = (data: TestFormData) => {
-    // TODO: validate & proceed to next step
-    console.log("Form data:", data)
-  }
+  if (testError) return <PageErrorState />
+  if (isPageLoading) return <PageLoadingState message="Loading test details…" />
 
   return (
     <div className="h-full flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-500 overflow-hidden bg-white overflow-y-auto">
@@ -31,22 +29,32 @@ export default function CreateEditPage() {
         className="max-w-5xl mx-auto w-full flex flex-col gap-8 bg-white border border-slate-200/60 p-3 sm:p-5 lg:p-8"
       >
         <TestCreationBreadcrumb
-          currentStep={testType}
+          currentStep={watchedType}
           actionLabel={isEditing ? "Edit Test" : "Create Test"}
         />
 
         <TestTypeTabs
-          value={testType}
-          onChange={(type: TestType) => setValue("testType", type)}
+          value={watchedType}
+          onChange={(type: TestType) => setValue("type", type)}
         />
 
         <TestDetailsForm
           control={control}
           register={register}
           errors={errors}
+          subjectOptions={subjectOptions}
+          topicOptions={topicOptions}
+          subTopicOptions={subTopicOptions}
+          subjectsLoading={subjectsLoading}
+          topicsLoading={topicsLoading}
+          subTopicsLoading={subTopicsLoading}
+          hasSubject={!!watchedSubject}
+          hasTopic={watchedTopics.length > 0}
+          onSubjectChange={handleSubjectChange}
+          onTopicChange={handleTopicChange}
         />
 
-        <FormActions onCancel={handleCancel} />
+        <FormActions onCancel={() => navigate("/")} isLoading={isSubmitting} />
       </form>
     </div>
   )

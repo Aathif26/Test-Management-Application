@@ -1,10 +1,10 @@
 import { FormInputField } from "@/components/form/FormInputField"
 import type { UseFormRegister, FieldErrors } from "react-hook-form"
-import type { TestFormData } from "../types"
+import type { TestFormSchema } from "@/types"
 
 interface MarkingSchemeFieldsProps {
-  register: UseFormRegister<TestFormData>
-  errors: FieldErrors<TestFormData>
+  register: UseFormRegister<TestFormSchema>
+  errors: FieldErrors<TestFormSchema>
 }
 
 const inputClass =
@@ -21,8 +21,8 @@ export function MarkingSchemeFields({ register, errors }: MarkingSchemeFieldsPro
           label="Wrong Answer"
           type="number"
           placeholder="-1"
-          registration={register("wrongAnswerMark", { valueAsNumber: true })}
-          error={errors.wrongAnswerMark?.message}
+          registration={register("wrong_marks", { valueAsNumber: true })}
+          error={errors.wrong_marks?.message}
           className={inputClass}
           FieldClassName="text-[#374151]"
         />
@@ -30,8 +30,8 @@ export function MarkingSchemeFields({ register, errors }: MarkingSchemeFieldsPro
           label="Unattempted"
           type="number"
           placeholder="+0"
-          registration={register("unattemptedMark", { valueAsNumber: true })}
-          error={errors.unattemptedMark?.message}
+          registration={register("unattempt_marks", { valueAsNumber: true })}
+          error={errors.unattempt_marks?.message}
           className={inputClass}
           FieldClassName="text-[#374151]"
         />
@@ -39,26 +39,26 @@ export function MarkingSchemeFields({ register, errors }: MarkingSchemeFieldsPro
           label="Correct Answer"
           type="number"
           placeholder="+5"
-          registration={register("correctAnswerMark", { valueAsNumber: true })}
-          error={errors.correctAnswerMark?.message}
+          registration={register("correct_marks", { valueAsNumber: true })}
+          error={errors.correct_marks?.message}
           className={inputClass}
           FieldClassName="text-[#374151]"
         />
         <FormInputField
             label="No of Questions"
-            type="text"
-            placeholder="Ex:250 Marks"
-            registration={register("numberOfQuestions")}
-            error={errors.numberOfQuestions?.message}
+            type="number"
+            placeholder="Ex: 250"
+            registration={register("total_questions", { valueAsNumber: true })}
+            error={errors.total_questions?.message}
             className={`${inputClass} font-medium`}
             FieldClassName="text-[#374151]"
           />
           <FormInputField
             label="Total Marks"
-            type="text"
-            placeholder="Ex:250 Marks"
-            registration={register("totalMarks")}
-            error={errors.totalMarks?.message}
+            type="number"
+            placeholder="Ex: 250"
+            registration={register("total_marks", { valueAsNumber: true })}
+            error={errors.total_marks?.message}
             className={`${inputClass} font-medium`}
             FieldClassName="text-[#374151]"
           />

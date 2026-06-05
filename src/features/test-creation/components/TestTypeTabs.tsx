@@ -1,4 +1,4 @@
-import { TEST_TYPES, type TestType } from "../types"
+import { TEST_TYPES, type TestType } from "@/types"
 
 interface TestTypeTabsProps {
   value: TestType
