@@ -9,7 +9,7 @@ export default function AppLayout() {
       <AppSidebar />
       <SidebarInset className="bg-[#fafafa]">
         <AppHeader />
-        <div className="flex-1 px-6">
+        <div className="flex-1">
           <Outlet />
         </div>
       </SidebarInset>
