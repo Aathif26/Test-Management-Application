@@ -36,7 +36,7 @@ export function TestCreationBreadcrumb({
             Test Creation
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator separator="/" />
         <BreadcrumbItem>
           <BreadcrumbLink
             href="#"
@@ -46,7 +46,7 @@ export function TestCreationBreadcrumb({
             {actionLabel}
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator separator="/" />
         <BreadcrumbItem>
           <BreadcrumbPage className="text-slate-900">{currentStep}</BreadcrumbPage>
         </BreadcrumbItem>

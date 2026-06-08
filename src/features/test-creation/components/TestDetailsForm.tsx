@@ -29,7 +29,7 @@ interface TestDetailsFormProps {
 const DIFFICULTY_OPTIONS = [
   { value: "easy", label: "Easy" },
   { value: "medium", label: "Medium" },
-  { value: "difficult", label: "Difficult" },
+  { value: "hard", label: "Difficult" },
 ]
 
 const inputClass =

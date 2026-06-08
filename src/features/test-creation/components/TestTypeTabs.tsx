@@ -11,6 +11,7 @@ export function TestTypeTabs({ value, onChange }: TestTypeTabsProps) {
       {TEST_TYPES.map((type) => (
         <button
           key={type}
+          type="button"
           onClick={() => onChange(type)}
           className={`w-fit px-4 py-1 sm:px-6 sm:py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:cursor-pointer ${
             value === type

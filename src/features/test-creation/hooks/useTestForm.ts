@@ -33,7 +33,7 @@ export function useTestForm() {
     defaultValues: DEFAULT_FORM_DATA,
     resolver: zodResolver(testFormSchema),
   })
-  const { control, register, handleSubmit, watch, setValue, reset, formState: { errors } } = form
+  const { control, register, handleSubmit, watch, setValue, reset, clearErrors, formState: { errors } } = form
 
   const watchedType = watch("type")
   const watchedSubject = watch("subject")
@@ -141,7 +141,7 @@ export function useTestForm() {
     isEditing, isSubmitting, isPageLoading, testError,
     control, register, errors, handleSubmit, onSubmit,
     watchedType, watchedSubject, watchedTopics,
-    setValue,
+    setValue, clearErrors,
     subjectOptions, topicOptions, subTopicOptions,
     subjectsLoading, topicsLoading, subTopicsLoading,
     handleSubjectChange, handleTopicChange,

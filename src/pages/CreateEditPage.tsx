@@ -13,7 +13,7 @@ export default function CreateEditPage() {
   const {
     isEditing, isSubmitting, isPageLoading, testError,
     control, register, errors, handleSubmit, onSubmit,
-    watchedType, watchedSubject, watchedTopics, setValue,
+    watchedType, watchedSubject, watchedTopics, setValue, clearErrors,
     subjectOptions, topicOptions, subTopicOptions,
     subjectsLoading, topicsLoading, subTopicsLoading,
     handleSubjectChange, handleTopicChange,
@@ -35,7 +35,7 @@ export default function CreateEditPage() {
 
         <TestTypeTabs
           value={watchedType}
-          onChange={(type: TestType) => setValue("type", type)}
+          onChange={(type: TestType) => { setValue("type", type); clearErrors() }}
         />
 
         <TestDetailsForm
